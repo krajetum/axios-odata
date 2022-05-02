@@ -1,8 +1,12 @@
 {
   "name": "axios-odata",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Axios OData Interface",
   "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krajetum/axios-odata"
+  },
   "contributors": [
     {
       "name": "Lorenzo Licalzi",
@@ -14,7 +18,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
-  "author": "",
+  "author": "Lorenzo Licalzi",
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",
