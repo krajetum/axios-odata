@@ -105,6 +105,69 @@ describe("query data", () => {
     }
   });
 
+  test("Filter on Collection - String", async () => {
+    try {
+      let url = await client
+        .query()
+        .entities("Airports")
+        .select("Name, IcaoCode")
+        .execute();
+
+      expect(url.request.path).toBe(
+        "/TripPinRESTierService/(S(dnx33crwjgtxair2gvwwxbnu))/Airports?$select=Name,+IcaoCode"
+      );
+    } catch (ex: any) {
+      throw ex;
+    }
+  });
+
+  test("Filter on Collection - Array", async () => {
+    try {
+      let url = await client
+        .query()
+        .entities("Airports")
+        .select(["Name", "IcaoCode"])
+        .execute();
+
+      expect(url.request.path).toBe(
+        "/TripPinRESTierService/(S(dnx33crwjgtxair2gvwwxbnu))/Airports?$select=Name,+IcaoCode"
+      );
+    } catch (ex: any) {
+      console.log(ex);
+      throw ex;
+    }
+  });
+
+  test("Filter on Collection - Paginate", async () => {
+    try {
+      let url = await client
+        .query()
+        .entities("People")
+        .paginate(2, 10)
+        .execute();
+
+      expect(url.request.path).toBe(
+        "/TripPinRESTierService/(S(dnx33crwjgtxair2gvwwxbnu))/People?$top=10&$skip=10"
+      );
+    } catch (ex: any) {
+      console.log(ex);
+      throw ex;
+    }
+  });
+
+  test("System Query Option $count", async () => {
+    try {
+      let url = await client.query().entities("People").count().execute();
+
+      expect(url.request.path).toBe(
+        "/TripPinRESTierService/(S(dnx33crwjgtxair2gvwwxbnu))/People/$count"
+      );
+    } catch (ex: any) {
+      console.log(ex);
+      throw ex;
+    }
+  });
+
   /*
   test("Filter on Enum Properties", async () => {
     try {
