@@ -1,0 +1,29 @@
+{
+  "name": "axios-odata",
+  "version": "0.0.1",
+  "description": "Axios OData Interface",
+  "main": "index.ts",
+  "contributors": [
+    {
+      "name": "Lorenzo Licalzi",
+      "email": "lorenzo@licalzi.com"
+    }
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "jest": "^27.0.0",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
