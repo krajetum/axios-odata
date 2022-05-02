@@ -1,6 +1,6 @@
 {
   "name": "axios-odata",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Axios OData Interface",
   "main": "index.ts",
   "contributors": [
