@@ -1,6 +1,6 @@
 {
   "name": "axios-odata",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Axios OData Client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,11 @@
       "name": "Lorenzo Licalzi",
       "email": "lorenzo@licalzi.com"
     }
+  ],
+  "keywords": [
+    "axios",
+    "odata",
+    "REST"
   ],
   "scripts": {
     "build": "tsc",
