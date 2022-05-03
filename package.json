@@ -1,6 +1,6 @@
 {
   "name": "axios-odata",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Axios OData Client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
