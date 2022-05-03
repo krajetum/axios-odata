@@ -1,8 +1,9 @@
 {
   "name": "axios-odata",
   "version": "0.0.6",
-  "description": "Axios OData Interface",
-  "main": "./dist/index.js",
+  "description": "Axios OData Client",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/krajetum/axios-odata"
