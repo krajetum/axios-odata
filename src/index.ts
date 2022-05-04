@@ -1,5 +1,5 @@
 import { Axios } from "axios";
-import { Query } from "./interfaces/Query";
+import { Query } from "./classes/query";
 
 interface QueryData {}
 

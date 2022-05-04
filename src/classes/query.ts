@@ -1,36 +1,5 @@
 import { Axios, AxiosPromise } from "axios";
-import { ODataListData } from "../models";
-
-interface EntitySet {
-  filter(filterquery: string): Queryable;
-  select(fields: string | string[]): Queryable;
-  paginate(page: number, rows: number): Executable;
-  count(): Executable;
-  execute(): Promise<AxiosPromise>;
-  entity(entity: string, id: number | string): Entity;
-  getURL(): string;
-}
-
-interface Entity {
-  entities(resource: string): EntitySet;
-  value(): Executable;
-  property(key: string): Entity;
-  getURL(): string;
-}
-
-interface Queryable {
-  filter(filterquery: string): Queryable;
-  select(fields: string | string[]): Queryable;
-  paginate(page: number, rows: number): Executable;
-  execute(): Promise<AxiosPromise>;
-  count(): Executable;
-  getURL(): string;
-}
-
-interface Executable {
-  execute(): Promise<AxiosPromise>;
-  getURL(): string;
-}
+import { Entity, EntitySet, Executable, Queryable } from "../interfaces";
 
 export class Query implements EntitySet, Entity, Queryable, Executable {
   private url: string;
@@ -42,11 +11,31 @@ export class Query implements EntitySet, Entity, Queryable, Executable {
     this.axios = axios;
     this.parameters = {};
   }
+
+  top(rowNumber: number): Queryable {
+    if (this.parameters["$skip"] === undefined) {
+      console.warn("overridden $skip property, it was already been set");
+    }
+
+    this.parameters["$top"] = rowNumber;
+    return this as Queryable;
+  }
+
+  skip(rowNumber: number): Queryable {
+    if (this.parameters["$skip"] === undefined) {
+      console.warn("overridden $top property, it was already been set");
+    }
+
+    this.parameters["$skip"] = rowNumber;
+    return this as Queryable;
+  }
+
   paginate(page: number, rows: number): Executable {
     this.parameters["$top"] = rows;
     this.parameters["$skip"] = (page - 1) * rows;
     return this as Executable;
   }
+
   property(key: string): Entity {
     this.url += `/${key}`;
     return this as Entity;
@@ -74,6 +63,8 @@ export class Query implements EntitySet, Entity, Queryable, Executable {
     this.url += `/${resource}`;
     return this as EntitySet;
   }
+
+  // TODO: Add a query ORM.
   /**
    * Applies a filter to the query.
    * All the concatenated filters are in AND
